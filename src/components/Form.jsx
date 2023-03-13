@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 import Error from './Error'
 import shortid from 'shortid';
 
-const Form = () => {
+//19.2 extraemos la prop dada desde app,esta prop es una función que agrega el gasto y se lo pasa a app
+const Form = ({addNewSpent}) => {
 
     //15 creamos el state para el nombre de los gastos 
     const [name, setName] = useState('')
@@ -12,6 +13,8 @@ const Form = () => {
 
     //18 creamos el estado para el error
     const [ error, setError] = useState(false)
+
+    
 
     //17.1 activamos la function addExpense desde el onSubmit
     const  addExpense = e => {
@@ -31,10 +34,16 @@ const Form = () => {
             quantity,
             id: shortid.generate()
         }
-        console.log(spent)
-        // pasar el gasto al componente principal
+        
 
-        // reset form 
+        // pasar el gasto al componente principal
+        /* 19 => pasamos la function dada por prop desde app para agregar spent object a bills, de esta forma spent pasa a imprimirse desde app si ponemos un console.log(spent) dentro de la function, de esta forma pasamos el valor de spent con props */
+        addNewSpent(spent)
+
+        // 20. reset form, dentro de esta function volvemos a fijar los useState 15 y 16 a su estado inicial para reset el Form, esto pasa por que al dar onSubmit la function va a bajando lineas y llega esta parte final en la que los estados regresan a su estado inicial
+        setName('')
+        setQuantity(0)
+
     }
     return (
         <form 
