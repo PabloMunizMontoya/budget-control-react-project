@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from 'react'
 import Error from './Error'
 
-const Ask = () => {
+//10 extraemos las props pasadas desde app
+const Ask = ({setBudget, setRest}) => {
 
     //1.Define state amount
     const [ amount, setAmount] = useState(0)
@@ -25,7 +26,10 @@ const Ask = () => {
                 setError (true)  
             }else {
                 // 3.2 pass the validation, si pasa la validación el estado error es false.
-            setError (false)
+                setError (false)
+                // 11. pasamos las funciones de useState dadas por props desde app, entonces una vez que validamos la data pasamos las funciones que guardan ese presupuesto en un estado 8,9 => los params de esas functions son amount que es la cantidad dada y validad desde el input
+                setBudget(amount)
+                setRest(amount)
             }
 
              
