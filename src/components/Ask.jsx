@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import Error from './Error'
 
 //10 extraemos las props pasadas desde app
-const Ask = ({setBudget, setRest}) => {
+const Ask = ({setBudget, setRest, setShowAsk}) => {
 
     //1.Define state amount
     const [ amount, setAmount] = useState(0)
@@ -30,6 +30,8 @@ const Ask = ({setBudget, setRest}) => {
                 // 11. pasamos las funciones de useState dadas por props desde app, entonces una vez que validamos la data pasamos las funciones que guardan ese presupuesto en un estado 8,9 => los params de esas functions son amount que es la cantidad dada y validad desde el input
                 setBudget(amount)
                 setRest(amount)
+                /* 14 pasamos la function de useState dada pro props desde app, entonces una vez que hacemos el submit el valor de showAsk cambia a false */
+                setShowAsk(false)
             }
 
              
