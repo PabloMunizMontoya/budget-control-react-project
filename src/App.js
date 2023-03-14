@@ -28,11 +28,17 @@ function App() {
   // 26 usamos el hook useEffect que actualiza el restante, para esto usamos los datos de el paso 20, cortamos e introducimos, el use Effect tiene como dependencia spent, entonces cada que spent se actualiza el se modifica. Como spent se actualizaba con el paso 20, ahora necesitamos un nuevo useState spent. con esto el gasto se actualiza de forma automática.
   // 27.1 ingresamos el useState setCreateSpent dentro del useEffect para mostrar o no el gasto en una condicional
   useEffect(() => {
+
+    //27 explicación: aca creamos el nuevo gasto
       if(createSpent === true) {
         setBills([
           ...bills,
           spent
         ])
+    // 28 restamos el presupuesto actual, creamos una variable que contiene este valor, usamos la variable rest y les sacamos la cantidad del gasto, después seteamos rest = a la variable que contiene el valor de la resta. este valor se imprime en el componente BudgetControl
+      const remainingBudget = rest - spent.quantity
+      setRest(remainingBudget)
+
       } else {
         setCreateSpent (false)
       }
