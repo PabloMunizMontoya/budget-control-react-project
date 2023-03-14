@@ -3,7 +3,11 @@ import Error from './Error'
 import shortid from 'shortid';
 
 //19.2 extraemos la prop dada desde app,esta prop es una función que agrega el gasto y se lo pasa a app
-const Form = ({addNewSpent}) => {
+/* const Form = ({addNewSpent}) => { */
+
+//26.4 cambiamos la function por el setting de estado de spent.
+// 27 extraemos la prop pasada desde app setCreateSpent .
+    const Form = ({setSpent, setCreateSpent}) => {
 
     //15 creamos el state para el nombre de los gastos 
     const [name, setName] = useState('')
@@ -37,8 +41,10 @@ const Form = ({addNewSpent}) => {
         
 
         // pasar el gasto al componente principal
-        /* 19 => pasamos la function dada por prop desde app para agregar spent object a bills, de esta forma spent pasa a imprimirse desde app si ponemos un console.log(spent) dentro de la function, de esta forma pasamos el valor de spent con props */
-        addNewSpent(spent)
+        /* 19 => pasamos la function dada por prop desde app para agregar spent object a bills, de esta forma spent pasa a imprimirse desde app si ponemos un console.log(spent) dentro de la function, de esta forma pasamos el valor de spent con props */ /* 26.5 es la misma lógica anterior solo que con el useState spent */
+        setSpent(spent)
+        //27.4 aca al importar esta function desde app lo que hacemos es cambiar el estado de la variable createSpent a true una vez que se genere el gasto, de esta forma gasto solo se renderizar si es true dada la condicional en el useEffect de app.
+        setCreateSpent(true)
 
         // 20. reset form, dentro de esta function volvemos a fijar los useState 15 y 16 a su estado inicial para reset el Form, esto pasa por que al dar onSubmit la function va a bajando lineas y llega esta parte final en la que los estados regresan a su estado inicial
         setName('')
